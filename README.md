@@ -26,11 +26,18 @@ Udacity's team has developed a virtual environment based on Unity's Engine to si
 
 ![alt text][image1]
 
-In training mode, images sequences from 3 simulated cameras as well as the steering commands input by the user are  continously stored 
+In training mode, images sequences from 3 simulated cameras as well as the steering commands input by the user are stored. This simulator has two different roads to drive on, but we are going to focus on the single lane road. 
 
 Left image                 |  Center image             |  Right image  
 :-------------------------:|:-------------------------:|:-------------------------: 
 ![][image2]                |  ![][image3]              |  ![][image4]
+
+#### Datasets
+In order to obtain a good driving behaviour different data collections are done. The first dataset corresponds to one lap to the single lane road, this road mostly has turns to the left which could create a biased behaviour when training and therefore it is necessary to create another dataset, in this case, in the same road but driving backwards. Finally in order to be able to recover and go back to the center of the lane when the car goes to the side of the road dataset is created, but only recording when the car is already in one of the sides of the lane and goes back to the center.
+
+Driving forward            |  Driving backwards        |  Recovery
+:-------------------------:|:-------------------------:|:-------------------------: 
+![][image3]                |  ![][image3]              |  ![][image4]
 
 ### 2. Model Architecture and Training Strategy.
 
