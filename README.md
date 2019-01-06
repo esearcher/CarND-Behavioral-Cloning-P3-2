@@ -14,23 +14,19 @@ This projects aims to develop a Deep Neural Network to clone car driving behavio
 [image4]: ./screenshots/right.jpg "Right"
 [image5]: ./screenshots/backwards.jpg "Backwards"
 [image6]: ./screenshots/recovery.jpg "Recovery"
-[image7]: ./screenshots/gray.jpg "Gray"
-[image8]: ./screenshots/equalized.jpg "Equalized"
-[image9]: ./screenshots/normalized.png "Normalized"
-[image10]: ./screenshots/test_1.png "Test 1"
-[image11]: ./screenshots/test_2.png "Test 2"
-[image12]: ./screenshots/test_3.png "Test 3"
-[image13]: ./screenshots/test_4.png "Test 4"
-[image14]: ./screenshots/test_5.png "Test 5"
+
 
 
 ### 1. Data collection.
 
-The dataset consists of 3 different pickle files containing images and labels for the training, the validation and the testing.
+Udacity's team has developed a virtual environment based on Unity's Engine to simulate a self driving that can be controlled using python. Such simulator has two different ways of being controlled:
+
+* Training mode: Allows an user to control the car and gather information at all times.
+* Autonomous mode: Creates a gateway for the car to be controlled using python scripts.
 
 ![alt text][image1]
 
-Using these found parameters any image can be corrected as the images below.
+In training mode, images sequences from 3 simulated cameras as well as the steering commands input by the user are  continously stored 
 
 Left image                 |  Center image             |  Right image  
 :-------------------------:|:-------------------------:|:-------------------------: 
