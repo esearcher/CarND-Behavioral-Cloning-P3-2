@@ -4,7 +4,7 @@
 
 ---
 
-**Behavioral Cloning Project**
+## Behavioral Cloning Project
 
 This projects aims to develop a Deep Neural Network to clone car driving behaviour in a simulated environment.  
 
