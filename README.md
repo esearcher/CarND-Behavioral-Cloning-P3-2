@@ -56,12 +56,8 @@ Using Keras a sequential model is created and the model defined is based in the 
 * Multilayer perceptron: Output = 10.
 * Multilayer perceptron: Output = 1. (Steering angle)
 
-Notice that the output layer is a single number that corresponds to the steering angle and therefore no softmax layer is required making this a regression problem. In this case the loss function used will be the Mean of Squared Error between the predicted and resulting angle and the optmizer will be the Adam Optimizer. The data is splitted 80% for training and 20% for validation, being shuffled every time during 10 epochs.
+Notice that the output layer is a single number that corresponds to the steering angle and therefore no softmax layer is required making this a regression problem.
 
-```
-model.compile(loss='mse', optimizer='adam')
-model.fit(X,y, validation_split=0.2, shuffle=True, nb_epoch=10)
-```
 For training, the data gathered from the simulator is loaded, but as input not only the center images will be used, but also the left and right images in order to augment the data. The steering angle for the center image will be the one recorded by the simulator, but for the left and right image the angle will be the same plus and minus a correction factor determined experimentaly.
 
 ```
@@ -74,6 +70,14 @@ right = line[2]
 images.append(cv2.imread(right)[...,::-1])
 measurements.append(float(line[3]) - correction)
 ```
+
+The loss function used will be the Mean of Squared Error between the predicted and resulting angle and the optmizer will be Adam. The data is splitted 80% for training and 20% for validation, being shuffled every time during 10 epochs.
+
+```
+model.compile(loss='mse', optimizer='adam')
+model.fit(X,y, validation_split=0.2, shuffle=True, nb_epoch=10)
+```
+The resulting loss was 0.0133 for the training set and 0.0683 for validation meaning the training converged succesfully. On the other hand these metrics constantly decreased during the 10 epochs meaning that apparently there was no over fitting during training.
 
 ### 3. Results.
 Next step is to obtain the edges of the image. For this the approached that suited the best was two combine the S channel thresholding from HLS color space along with the magnitud of the gradient of RGB images. 
