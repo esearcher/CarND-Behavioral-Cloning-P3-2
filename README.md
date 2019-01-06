@@ -80,7 +80,7 @@ model.fit(X,y, validation_split=0.2, shuffle=True, nb_epoch=10)
 The resulting loss was 0.0133 for the training set and 0.0683 for validation meaning the training converged succesfully. On the other hand these metrics constantly decreased during the 10 epochs meaning that apparently there was no over fitting during training.
 
 ### 3. Results.
-Next step is to obtain the edges of the image. For this the approached that suited the best was two combine the S channel thresholding from HLS color space along with the magnitud of the gradient of RGB images. 
+[here](https://youtu.be/nneKloQ-ud4) 
 
 ### 4. Potential shortcomings
 
