@@ -41,7 +41,7 @@ Driving forward            |  Driving backwards        |  Recovery
 
 ### 2. Model Architecture and Training Strategy.
 
-Using Keras a sequential model is created. The initial images supplied by the cameras are 320 x 120 pixels, these images are fed into a convolutional neural network  with 5 convolutional layers, 3 dense layers and 2 preprocessing steps.
+Using Keras a sequential model is created and the model defined is based in the Nvidia pilot net model. The initial images supplied by the cameras are 320 x 120 pixels, these images are fed into a convolutional neural network  with 5 convolutional layers, 3 dense layers and 2 preprocessing steps.
 
 * Cropping 2D: Image is cropped by 70 pixels and 25 pixels from the top and bottom correspondingly.
 * Normalization: The resulting image is normalized between -1 and 1 using a lamda layer.
@@ -62,7 +62,19 @@ Notice that the output layer is a single number that corresponds to the steering
 model.compile(loss='mse', optimizer='adam')
 model.fit(X,y, validation_split=0.2, shuffle=True, nb_epoch=10)
 ```
-For training the data gathered from the simulator is loaded. As input not only the center images will be used, but also the left and right images will be used in order to augment the data. The steering angle for the center image will be the one recorded by the simulator. For the left and right image the steering angle will be the recorded steering angle with a correction factor of + and - correspondingly.
+For training the data gathered from the simulator is loaded. As input not only the center images will be used, but also the left and right images will be used in order to augment the data. The steering angle for the center image will be the one recorded by the simulator. For the left and right image the angle will be the same, but plus and minus a correction factor.
+
+```
+# Left images with angle correction
+left = line[1]
+images.append(cv2.imread(left)[...,::-1])
+measurements.append(float(line[3]) + correction)
+# Right images with angle correction
+right = line[2]
+images.append(cv2.imread(right)[...,::-1])
+measurements.append(float(line[3]) - correction)
+```
+This will result in 3 times the amount of data improving the trainig of the neural network.
 
 ### 3. Results.
 Next step is to obtain the edges of the image. For this the approached that suited the best was two combine the S channel thresholding from HLS color space along with the magnitud of the gradient of RGB images. 
