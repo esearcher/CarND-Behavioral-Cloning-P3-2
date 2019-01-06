@@ -37,7 +37,7 @@ In order to obtain a good driving behaviour different data collections are done.
 
 Driving forward            |  Driving backwards        |  Recovery
 :-------------------------:|:-------------------------:|:-------------------------: 
-![][image3]                |  ![][image3]              |  ![][image4]
+![][image3]                |  ![][image5]              |  ![][image6]
 
 ### 2. Model Architecture and Training Strategy.
 
