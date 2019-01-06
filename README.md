@@ -33,7 +33,7 @@ Left image                 |  Center image             |  Right image
 ![][image2]                |  ![][image3]              |  ![][image4]
 
 #### Datasets
-In order to obtain a good driving behaviour different data collections are done. The first dataset corresponds to one lap to the single lane road, this road mostly has turns to the left which could create a biased behaviour when training and therefore it is necessary to create another dataset, in this case, in the same road but driving backwards. Finally in order to be able to recover and go back to the center of the lane when the car goes to the side of the road one last dataset is created, this one corresponds to the same road, but only recording when the car is already in one of the sides of the lane and goes back to the center and avoiding to record the moment when the car is going away from the center of the lane to any of the sides.
+In order to obtain a good driving behaviour different data collections are done. The first dataset corresponds to one lap to the single lane road, this road mostly has turns to the left which could create a biased behaviour when training and therefore it is necessary to create another dataset, in this case, in the same road but driving backwards. Finally in order to be able to recover and go back to the center of the lane when the car goes to the side of the road one last dataset is created, This one corresponds to the same road, but only recording when the car is already in one of the sides of the lane and goes back to the center and avoiding to record the moment when the car is going away from the center of the lane to any of the sides.
 
 Driving forward            |  Driving backwards        |  Recovery
 :-------------------------:|:-------------------------:|:-------------------------: 
@@ -41,17 +41,28 @@ Driving forward            |  Driving backwards        |  Recovery
 
 ### 2. Model Architecture and Training Strategy.
 
-Using the found calibration parameters every incoming image from the camera is corrected using the following function.
+Using Keras a sequential model is created. The initial images supplied by the cameras are 320 x 120 pixels, these images are fed into a convolutional neural network  with 5 convolutional layers, 3 dense layers and 2 preprocessing steps.
+
+* Cropping 2D: Image is cropped by 70 pixels and 25 pixels from the top and bottom correspondingly.
+* Normalization: The resulting image is normalized between -1 and 1 using a lamda layer.
+* 2D Convolution: 3 Filters 5x5 with a stride of 2 by 2 and a ReLu activation. 
+* 2D Convolution: 24 Filters 5x5 with a stride of 2 by 2 and a ReLu activation.
+* 2D Convolution: 36 Filters 5x5 with a stride of 2 by 2 and a ReLu activation.
+* 2D Convolution: 48 Filters 3x3 with a stride of 1 by 1 and a ReLu activation.
+* 2D Convolution: 64 Filters 3x3 with a stride of 1 by 1 and a ReLu activation.
+* Flatten: The convolution filters are set to a flatten layer.
+* Multilayer perceptron: Output = 100.
+* Multilayer perceptron: Output = 50.
+* Multilayer perceptron: Output = 10.
+* Multilayer perceptron: Output = 1. (Steering angle)
+
+Notice that the output layer is a single number that corresponds to the steering angle and therefore no softmax layer is required making this a regression problem. In this case the loss function will be the Mean of Squared Error between the predicted and resulting angle and the optmizer will be the Adam Optimizer.
 
 ```
-undist = cv2.undistort(img, mtx, dist, None, mtx) # Undistore the image
+model.compile(loss='mse', optimizer='adam')
+model.fit(X,y, validation_split=0.2, shuffle=True, nb_epoch=10)
 ```
-This procedure will ensure that the calculations performed will correspond to real world measurements.
-
-
-Original image             |  Corrected image 
-:-------------------------:|:-------------------------:
-![][image2]                |  ![][image3]
+For training the data gathered from the simulator is loaded. As input not only the center images will be used, but also the left and right images will be used in order to augment the data. The steering angle for the center image will be the one recorded by the simulator. For the left and right image the steering angle will be the recorded steering angle with a correction factor of + and - correspondingly.
 
 ### 3. Results.
 Next step is to obtain the edges of the image. For this the approached that suited the best was two combine the S channel thresholding from HLS color space along with the magnitud of the gradient of RGB images. 
