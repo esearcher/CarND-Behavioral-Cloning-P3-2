@@ -33,7 +33,7 @@ Left image                 |  Center image             |  Right image
 ![][image2]                |  ![][image3]              |  ![][image4]
 
 #### Datasets
-In order to obtain a good driving behaviour different data collections are done. The first dataset corresponds to one lap to the single lane road, this road mostly has turns to the left which could create a biased behaviour when training and therefore it is necessary to create another dataset, in this case, in the same road but driving backwards. Finally in order to be able to recover and go back to the center of the lane when the car goes to the side of the road dataset is created, but only recording when the car is already in one of the sides of the lane and goes back to the center.
+In order to obtain a good driving behaviour different data collections are done. The first dataset corresponds to one lap to the single lane road, this road mostly has turns to the left which could create a biased behaviour when training and therefore it is necessary to create another dataset, in this case, in the same road but driving backwards. Finally in order to be able to recover and go back to the center of the lane when the car goes to the side of the road one last dataset is created, this one corresponds to the same road, but only recording when the car is already in one of the sides of the lane and goes back to the center and avoiding to record the moment when the car is going away from the center of the lane to any of the sides.
 
 Driving forward            |  Driving backwards        |  Recovery
 :-------------------------:|:-------------------------:|:-------------------------: 
