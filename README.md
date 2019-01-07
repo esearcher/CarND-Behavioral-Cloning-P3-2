@@ -41,7 +41,7 @@ Driving forward            |  Driving backwards        |  Recovery
 
 ### 2. Model Architecture and Training Strategy.
 
-Using Keras a sequential model is created and the model defined is based in the Nvidia pilot net model. The initial images supplied by the cameras are 320 x 120 pixels, these images are fed into a convolutional neural network  with 5 convolutional layers, 3 dense layers and 2 preprocessing steps.
+Using Keras a sequential model is created based in the Nvidia `PilotNet` model. The initial images supplied by the cameras are 320 x 120 pixels, these images are fed into a convolutional neural network  with 5 convolutional layers, 3 dense layers and 2 preprocessing steps.
 
 * Cropping 2D: Image is cropped by 70 pixels and 25 pixels from the top and bottom correspondingly.
 * Normalization: The resulting image is normalized between -1 and 1 using a lamda layer.
