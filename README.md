@@ -85,9 +85,7 @@ With the network successfully trained the Autonomous mode is used along with the
 ### 4. Shortcomings
 
 * At this point the Network is able to drive in the environment it was trained for, but it probably only will be able to do it there, for instance, it was not able to drive in the 2 lanes road.
-
 * Learning the behavior of a certain driver can lead to biased models where even the bad habits of the driver are stored by the network.
-
 * It is not recommended to control a whole vehicle only by the information of one camera.
 
 ### 5. Possible improvements
