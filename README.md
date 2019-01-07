@@ -80,12 +80,18 @@ model.fit(X,y, validation_split=0.2, shuffle=True, nb_epoch=10)
 The resulting loss was 0.0133 for the training set and 0.0683 for validation meaning the training converged succesfully. On the other hand these metrics constantly decreased during the 10 epochs meaning that apparently there was no over fitting during training.
 
 ### 3. Results.
-[here](https://youtu.be/nneKloQ-ud4) 
+With the network successfully trained the Autonomous mode is used along with the script `drive.py`. Such script connects to the simulator which feeds images from the front camera to the CNN and it inferences a steering angle allowing to navigate on the road for 2 complete laps or even more. A low resolution video of the frontal camera while it drives can be seen [here](https://youtu.be/nneKloQ-ud4). 
 
-### 4. Potential shortcomings
+### 4. Shortcomings
 
-This algorithm relies highly in a good segmentation of the lane lines and even though the Saturation channel from HLS color space is more robust to light changing conditions, it is not certain that good lines are going to be obtained and that will not be affected by shades or other facts.
+* At this point the Network is able to drive in the environment it was trained for, but it probably only will be able to do it there, for instance, it was not able to drive in the 2 lanes road.
+
+* Using this kind of schemes where the behavior of a certain driver is being learnt can lead to biased models where even the bad habits are stored by the network. In this case the driving of the car is not smooth, although it successfully wworked.
+
+* It is not recommended at all to control a whole vehicle only by the information of one camera.
 
 ### 5. Possible improvements
 
-In my opinion a better segmentation of the lane lines has to be done and possibly Convolutional Neural Networks for this task could be used. 
+* The network should be trained with much more data from different environments.
+* This tool should be part of a bigger scheme along with different sensors to handle the car driving.
+
