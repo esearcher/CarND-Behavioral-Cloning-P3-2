@@ -6,7 +6,7 @@
 
 ## Behavioral Cloning Project
 
-This projects aims to develop a Deep Neural Network to clone car driving behaviour in a simulated environment.  
+This projects aims to develop a Deep Neural Network to clone human car driving behaviour in a simulated environment for autonomous driving.  
 
 [image1]: ./screenshots/simulator.png "Simulator"
 [image2]: ./screenshots/left.jpg "Left"
