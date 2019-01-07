@@ -44,7 +44,7 @@ Driving forward            |  Driving backwards        |  Recovery
 Using Keras a sequential model is created based in the Nvidia `PilotNet` model. The initial images supplied by the cameras are 320 x 120 pixels, these images are fed into a convolutional neural network  with 2 preprocessing steps, 5 convolutional layers and 3 dense layers.
 
 * Cropping 2D: Image is cropped by 70 pixels and 25 pixels from the top and bottom correspondingly.
-* Normalization: The resulting image is normalized between -1 and 1 using a lamda layer.
+* Normalization: The resulting image is normalized between -1 and 1 using a lambda layer.
 * 2D Convolution: 3 Filters 5x5 with a stride of 2 by 2 and a ReLu activation. 
 * 2D Convolution: 24 Filters 5x5 with a stride of 2 by 2 and a ReLu activation.
 * 2D Convolution: 36 Filters 5x5 with a stride of 2 by 2 and a ReLu activation.
