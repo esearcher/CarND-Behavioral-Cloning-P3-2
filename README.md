@@ -86,12 +86,12 @@ With the network successfully trained the Autonomous mode is used along with the
 
 * At this point the Network is able to drive in the environment it was trained for, but it probably only will be able to do it there, for instance, it was not able to drive in the 2 lanes road.
 
-* Using this kind of schemes where the behavior of a certain driver is being learnt can lead to biased models where even the bad habits are stored by the network. In this case the driving of the car is not smooth, although it successfully wworked.
+* Learning the behavior of a certain driver can lead to biased models where even the bad habits of the driver are stored by the network.
 
-* It is not recommended at all to control a whole vehicle only by the information of one camera.
+* It is not recommended to control a whole vehicle only by the information of one camera.
 
 ### 5. Possible improvements
 
 * The network should be trained with much more data from different environments.
-* This tool should be part of a bigger scheme along with different sensors to handle the car driving.
+* This tool should be part of a bigger scheme along with different sensors to handle the car driving more safely.
 
